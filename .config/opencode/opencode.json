@@ -1,0 +1,64 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp":true,
+  "autoupdate": false,
+  "provider": {
+    "ar-router": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "AR Router",
+      "options": {
+        "baseURL": "https://ar.rastar.dev/api/v1",
+        "apiKey": "{file:~/.secrets/AR-Router-key}"
+      },
+      "models": {
+        "codex/gpt-5.6-sol-high": {
+          "name": "GPT 5.6 Sol",
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          }
+        }
+      }
+    },
+    "ai-router": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "AI Router",
+      "options": {
+        "baseURL": "https://ai-router.rastar.dev/v1",
+        "apiKey": "{file:~/.secrets/AI-Router-key}"
+      },
+      "models": {
+        "cx/gpt-5.6-sol": {
+          "name": "GPT 5.6 Sol"
+        },
+        "kimi/k3": {
+          "name" : "kimi K3"
+        },
+        "cx/gpt-6.1-sol": {
+          "name": "GPT 6.1 Sol"
+        }
+      }
+    }
+  },
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "enabled": true
+    },
+    "github": {
+      "type": "local",
+      "command": [
+        "bash",
+        "-lc",
+        "GITHUB_PERSONAL_ACCESS_TOKEN=\"$(gh auth token)\" exec docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server"
+      ],
+      "enabled": true,
+      "timeout": 30000
+    }
+  }
+}
