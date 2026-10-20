@@ -24,6 +24,7 @@ fi
 alias herdrcoder="herdr --remote main.dev.arsalan-namvar.coder"
 alias activate="source .venv/bin/activate"
 alias config='git --git-dir="$HOME/.cfg" --work-tree="$HOME"'
+alias lconfig='lazygit --git-dir="$HOME/.cfg" --work-tree="$HOME"'
 # <<< aliases <<<
 . "$HOME/.local/share/../bin/env"
 
