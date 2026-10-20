@@ -1,12 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "lsp":true,
-  "autoupdate": false,
-  "provider": {
+  "update": "disable",
+  "providers": {
     "ar-router": {
-      "npm": "@ai-sdk/openai-compatible",
+      "package": "aisdk:@ai-sdk/openai-compatible",
       "name": "AR Router",
-      "options": {
+      "settings": {
         "baseURL": "https://ar.rastar.dev/api/v1",
         "apiKey": "{file:~/.secrets/AR-Router-key}"
       },
@@ -21,9 +20,9 @@
       }
     },
     "ai-router": {
-      "npm": "@ai-sdk/openai-compatible",
+      "package": "aisdk:@ai-sdk/openai-compatible",
       "name": "AI Router",
-      "options": {
+      "settings": {
         "baseURL": "https://ai-router.rastar.dev/v1",
         "apiKey": "{file:~/.secrets/AI-Router-key}"
       },
@@ -41,24 +40,29 @@
     }
   },
   "mcp": {
-    "context7": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@upstash/context7-mcp"
-      ],
-      "enabled": true
-    },
-    "github": {
-      "type": "local",
-      "command": [
-        "bash",
-        "-lc",
-        "GITHUB_PERSONAL_ACCESS_TOKEN=\"$(gh auth token)\" exec docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server"
-      ],
-      "enabled": true,
-      "timeout": 30000
+    "servers": {
+      "context7": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@upstash/context7-mcp"
+        ],
+        "disabled": false
+      },
+      "github": {
+        "type": "local",
+        "command": [
+          "bash",
+          "-lc",
+          "GITHUB_PERSONAL_ACCESS_TOKEN=\"$(gh auth token)\" exec docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server"
+        ],
+        "disabled": false,
+        "timeout": {
+          "catalog": 30000,
+          "execution": 30000
+        }
+      }
     }
   }
 }
