@@ -1,0 +1,9 @@
+providers:
+  ai-router:
+    baseUrl: https://ai-router.rastar.dev/v1
+    api: openai-completions
+    authHeader: true
+    apiKey: '!cat "$HOME/.secrets/AI-Router-key"'
+    models:
+      - id: cx/gpt-6.1-sol
+        name: GPT 6.1 Sol
